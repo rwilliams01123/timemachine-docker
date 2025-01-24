@@ -23,7 +23,7 @@ services:
       #- "139:139"
       #- "445:445"
     volumes:
-      - /mnt/backups:/opt/timemachine
+      - /mnt/backups:/opt
       - ./users:/users
     tmpfs:
       - /run/samba
