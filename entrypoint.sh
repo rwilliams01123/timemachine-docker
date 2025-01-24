@@ -269,7 +269,7 @@ then
   then
     echo "INFO: Avahi - using ${ADVERTISED_HOSTNAME} as hostname."
     SERVICE_NAME="${ADVERTISED_HOSTNAME}"
-    HOSTNAME_XML="<host-name>${ADVERTISED_HOSTNAME}.home</host-name>"
+    HOSTNAME_XML="<host-name>${ADVERTISED_HOSTNAME}.local</host-name>"
   fi
   echo "<?xml version=\"1.0\" standalone='no'?><!--*-nxml-*-->
 <!DOCTYPE service-group SYSTEM \"avahi-service.dtd\">
