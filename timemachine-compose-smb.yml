@@ -1,8 +1,12 @@
 version: "3.7"
 services:
   timemachine:
-    network_mode: "host"
+    #network_mode: "host"
+    networks:
+      mynet:
+        ipv4_address: 100.64.0.4
     environment:
+      - ADVERTISED_HOSTNAME=TimeMachine
       - TM_USERNAME=timemachine
       - TM_GROUPNAME=timemachine
       - PASSWORD=timemachine
@@ -10,14 +14,16 @@ services:
       - TM_GID=1000
       - SET_PERMISSIONS=false
       - VOLUME_SIZE_LIMIT=0
+      - EXTERNAL_CONF=/users
     restart: unless-stopped
-    ports:
-      - "137:137/udp"
-      - "138:138/udp"
-      - "139:139"
-      - "445:445"
+    #ports:
+      #- "137:137/udp"
+      #- "138:138/udp"
+      #- "139:139"
+      #- "445:445"
     volumes:
-      - /path/to/your/timemachine/volume:/opt/timemachine
+      - /mnt/backups:/opt/timemachine
+      - ./users:/users
     tmpfs:
       - /run/samba
     ulimits:
@@ -26,3 +32,14 @@ services:
         hard: 65536
     container_name: timemachine
     image: mbentley/timemachine:smb
+
+networks:
+  mynet:
+    driver: macvlan
+    driver_opts:
+      parent: eth0
+    ipam:
+      config:
+        - subnet: 100.64.0.0/24
+          ip_range: 100.64.0.0/24
+          gateway: 100.64.0.1
