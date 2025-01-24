@@ -3,7 +3,7 @@ services:
   timemachine:
     #network_mode: "host"
     networks:
-      mynet:
+      macvlan_network:
         ipv4_address: 100.64.0.4
     environment:
       - ADVERTISED_HOSTNAME=TimeMachine
@@ -34,12 +34,6 @@ services:
     image: mbentley/timemachine:smb
 
 networks:
-  mynet:
-    driver: macvlan
-    driver_opts:
-      parent: eth0
-    ipam:
-      config:
-        - subnet: 100.64.0.0/24
-          ip_range: 100.64.0.0/24
-          gateway: 100.64.0.1
+  macvlan_network:
+    external:
+      name: mynet
