@@ -1,12 +1,13 @@
 version: "3.7"
 services:
   timemachine:
+    hostname: TimeMachine
     #network_mode: "host"
     networks:
       macvlan_network:
         ipv4_address: 100.64.0.4
     environment:
-      - ADVERTISED_HOSTNAME=TimeMachine
+      #- ADVERTISED_HOSTNAME=TimeMachine
       - TM_USERNAME=timemachine
       - TM_GROUPNAME=timemachine
       - PASSWORD=timemachine
