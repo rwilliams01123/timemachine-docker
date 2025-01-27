@@ -8,10 +8,10 @@ services:
         ipv4_address: 100.64.0.4
     environment:
       #- ADVERTISED_HOSTNAME=TimeMachine
-      - TM_USERNAME=robert
+      - TM_USERNAME=timemachine
       - TM_GROUPNAME=timemachine
-      #- PASSWORD=timemachine
-      - PASSWORD_FILE=/run/secrets/password
+      - PASSWORD=timemachine
+      #- PASSWORD_FILE=/run/secrets/password
       - TM_UID=1000
       - TM_GID=1000
       - SET_PERMISSIONS=false
