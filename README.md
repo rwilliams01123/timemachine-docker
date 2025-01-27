@@ -1,3 +1,16 @@
+# RW Notes
+
+## Implementation process notes
+
+Make sure that the drive is mounted BEFORE the container to deployed. 
+stop and rm container
+umount drive
+format drive
+mount drive
+start container
+
+The docker-compose is bind mounting the directory but mount will not automatically update the links if the drive is mounted after the composition.
+
 # mbentley/timemachine
 
 docker image to run Samba or AFP (netatalk) to provide a compatible Time Machine for MacOS
