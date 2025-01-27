@@ -8,14 +8,17 @@ services:
         ipv4_address: 100.64.0.4
     environment:
       #- ADVERTISED_HOSTNAME=TimeMachine
-      - TM_USERNAME=timemachine
+      - TM_USERNAME=robert
       - TM_GROUPNAME=timemachine
-      - PASSWORD=timemachine
+      #- PASSWORD=timemachine
+      - PASSWORD_FILE=/run/secrets/password
       - TM_UID=1000
       - TM_GID=1000
       - SET_PERMISSIONS=false
       - VOLUME_SIZE_LIMIT=0
-      - EXTERNAL_CONF=/users
+      #- EXTERNAL_CONF=/users
+    secrets:
+      - password
     restart: unless-stopped
     #ports:
       #- "137:137/udp"
@@ -33,6 +36,10 @@ services:
         hard: 65536
     container_name: timemachine
     image: mbentley/timemachine:smb
+
+secrets:
+  password:
+    file: ./password.txt
 
 networks:
   macvlan_network:
